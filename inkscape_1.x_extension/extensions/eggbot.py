@@ -445,7 +445,6 @@ class EggBot( inkex.Effect ):
 			self.penDownActivatesEngraver = True
 			self.recursivelyTraverseSvg( self.svg, self.svgTransform )
 			self.penUp()   #Always end with pen-up
-			self.sendDisableMotors() #And disable both steppers
 
 			# Logically, we want to turn the engraver off here as well,
 			# but we put that in our finally clause instead
@@ -466,6 +465,8 @@ class EggBot( inkex.Effect ):
 				self.svgLastPathNC = 0
 				self.svgTotalDeltaX = 0
 				self.svgTotalDeltaY = 0
+
+			self.sendDisableMotors() #And disable both steppers
 
 		finally:
 			# We may have had an exception and lost the serial port...
